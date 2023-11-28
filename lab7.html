@@ -3043,13 +3043,7 @@ vertical-align: -.125em;
 
 </header>
 
-<section id="questions" class="level1">
-<h1>QUESTIONS</h1>
-<ul>
-<li>for sex variable: which one is male/female? it’s just 1 and 0 rn</li>
-<li>what is up with the cp values (which one is 0 and which one is 3)</li>
-</ul>
-<div class="cell" data-tags="[]" data-execution_count="233">
+<div class="cell" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
@@ -3063,13 +3057,12 @@ vertical-align: -.125em;
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
 <section id="part-0-data-cleaning" class="level1">
 <h1>Part 0: Data Cleaning</h1>
-<div class="cell" data-tags="[]" data-execution_count="64">
+<div class="cell" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ha_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://www.dropbox.com/s/aohbr6yb9ifmc8w/heart_attack.csv?dl=1&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ha_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -3216,11 +3209,11 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="65">
+<div class="cell" data-tags="[]" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop na values</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ha_df <span class="op">=</span> ha_df.dropna()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ha_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -4400,7 +4393,8 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<p>Interpreting the coefficients: For positive coefficients: these variables have a positive association with the outcome (being at risk of having a heart attack). For example, [lower values of sex] increases their log odds of having an exercise-induced heart attack by 1.566618. For negative coefficients: these variables have a negative association with the outcome. For example, lower values of chest pain decreases their chance of getting a heart attack.</p>
+<p>Interpreting the coefficients: For positive coefficients: these variables have a positive association with the outcome (being at risk of having a heart attack). For example, sex 0 increases their log odds of having an exercise-induced heart attack by 1.566618. For negative coefficients: these variables have a negative association with the outcome. For example, lower values of chest pain decreases their chance of getting a heart attack.</p>
+<p>One thing to mention is that there seems to be a discrepancy between the variable chest pain and the true meaning with chest pain. The coefficients show that having typical angina has a negative association with the outcome. When a patient has chest pain, they are labeled as having a low risk of having a heart attack. This does not make sense. Usually, those with angina have a high risk of having a heart attack, since it is a “tell-tale” symptom of having a heart attack. Further analysis is needed to determine the relationship between chest pain and the outcome. This applies for the cholesterol variable as well; typically when cholesterol levels increase, the risk of having a heart attack increases as well. However, the coefficient is slightly negative. Statistical analysis is needed to determine if the cholesterol variable has a significant association with the outcome.</p>
 </section>
 <section id="interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
